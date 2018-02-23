@@ -1,0 +1,86 @@
+.main {
+    margin: 20px;
+}
+
+.main h3 {
+    text-align: center;
+}
+
+.main .form-horizontal fieldset {
+    border: 1px solid #239fe8;
+    min-height: 80px;
+    margin-top: 5px;
+}
+
+.main .form-horizontal legend {
+    display: block;
+    width: auto;
+    padding: 0;
+    margin-bottom: 12px;
+    margin-left: 12px;
+    font-size: 14px;
+    line-height: inherit;
+    color: #239fe8;
+    border: 0;
+    border-bottom: none;
+}
+
+.main .form-horizontal .row {
+    margin: 0 0 6px;
+}
+
+.main .form-horizontal [class^="col-xs-"] {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+[class^="form-control-expend-"] {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    min-height: 34px;
+}
+
+.form-control-expend-left {
+    border-radius: 5px 0 0 5px;
+}
+
+.form-control-expend-right {
+    border-radius: 0 5px 5px 0;
+    border-left: 0;
+}
+[class^="col-xs-"] input[type="radio"],
+[class^="col-xs-"] input[type="checkbox"]{
+    margin-top: 10px;
+    margin-left: 5px;
+    vertical-align: text-bottom;
+}
+.chosen-container-single .chosen-single {
+    background: #fff;
+    box-shadow: none;
+    -moz-box-sizing: border-box;
+    border: 1px solid #ccc;
+    cursor: text;
+    height: auto !important;
+    margin: 0;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 4px 12px;
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.red {
+    color: #ff0000;
+}
