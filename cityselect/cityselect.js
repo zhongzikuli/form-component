@@ -217,7 +217,7 @@ function provincePage(currentProvincePage, num, pageSize, callback) {
             provinceShortName = provinceName.substr(0, 2);
         }
         var provinceId = allProvince[i].id;
-        html += '<li><a onclick="viewCity(\'' + provinceId + '\',\'' + num + '\',\'' + pageSize + '\',' + callback + ')" id="' + provinceId + '" title="' + provinceName + '">' + provinceShortName + '</a></li>';
+        html += '<li><a onclick="viewCity(\'' + provinceId + '\',' + num + ',' + pageSize + ',' + callback + ')" id="' + provinceId + '" title="' + provinceName + '">' + provinceShortName + '</a></li>';
     }
     $(".provinceAll .list ul").html(html);
 }
@@ -259,9 +259,9 @@ function cityPage(provinceId, currentCityPage, num, pageSize, callback) {
         var cityShortName = cityName.substring(0, 4);
         var cityId = provinceAllCity[i].id;
         if (num == 2) {
-            html += '<li><a onclick="viewAll(\'' + cityId + '\',\'' + num + '\',' + callback + ');" id="' + cityId + '" title="' + cityName + '">' + cityShortName + '</a></li>';
+            html += '<li><a onclick="viewAll(\'' + cityId + '\',' + num + ',' + callback + ');" id="' + cityId + '" title="' + cityName + '">' + cityShortName + '</a></li>';
         } else {
-            html += '<li><a onclick="viewCounty(\'' + cityId + '\',\'' + num + '\',\'' + pageSize + '\',' + callback + ');" id="' + cityId + '" title="' + cityName + '">' + cityShortName + '</a></li>';
+            html += '<li><a onclick="viewCounty(\'' + cityId + '\',' + num + ',' + pageSize + ',' + callback + ');" id="' + cityId + '" title="' + cityName + '">' + cityShortName + '</a></li>';
         }
     }
     $(".cityAll .list ul").html(html);
@@ -303,7 +303,7 @@ function countyPage(cityId, currentCountyPage, num, pageSize, callback) {
         var countyName = cityAllCounty[i].name;
         var countyShortName = countyName.substring(0, 4);
         var countyId = cityAllCounty[i].id;
-        html += '<li><a onclick="viewAll(\'' + countyId + '\',\'' + num + '\',' + callback + ');" id="' + countyId + '" title="' + countyName + '">' + countyShortName + '</a></li>';
+        html += '<li><a onclick="viewAll(\'' + countyId + '\',' + num + ',' + callback + ');" id="' + countyId + '" title="' + countyName + '">' + countyShortName + '</a></li>';
     }
     $(".countyAll .list ul").html(html);
 }
