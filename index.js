@@ -1,3 +1,6 @@
+/*
+* created by zhongzikuli<hgb102xlg@126.com> on 17/10/9.
+* */
 $(document).ready(function () {
     new component.form({
         id: '#user',

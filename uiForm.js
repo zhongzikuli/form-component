@@ -1,3 +1,6 @@
+/*
+* created by zhongzikuli<hgb102xlg@126.com> on 17/10/9.
+* */
 (function ($) {
     var Form = function (option, callback) {
         //初始化组件
@@ -59,11 +62,13 @@
             $("#" + it.id).on("click", function () {
                 laydate({
                     format: it.formatDate ? it.formatDate : 'YYYY-MM-DD',
+                    min: it.min ? it.min : "1970-01-01",
                     max: it.max ? it.max : '',
                     istime: it.istime ? it.istime : false, //是否开启时间选择
                     isclear: it.isclear ? it.isclear : true, //是否显示清空
                     istoday: it.istoday ? it.istoday : false, //是否显示今天
                     issure: it.issure ? it.issure : false, //是否显示确认
+                    start: it.start ? it.start : '',
                     choose: function (datas) {
 
                     }
@@ -194,6 +199,8 @@
                 tHtml = prepareCheckDate(it, lWidth, tWidth);
             } else if (it.xType === 'checkArea') {
                 tHtml = prepareCheckArea(it, lWidth, tWidth);
+            } else if (item.xtype == 'connection') {
+                tHtml = prepareConnection(item, lWidth, tWidth);
             }
             html += tHtml;
 
@@ -342,7 +349,7 @@
     function prepareButton(it, lWidth, tWidth) {
         var html = "";
         html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-xs-' + tWidth + '"') + '>';
-        html += '<button type="button" ' + (it.btnClass ? 'class="btn ' + it.btnClass + '"' : 'class="btn  btn-default"' ) + '>' + it.title + '</button>';
+        html += '<button type="button" ' + (it.btnClass ? 'class="btn ' + it.btnClass + '"' : 'class="btn  btn-default"') + '>' + it.title + '</button>';
         html += '</div>';
         return html;
     }
@@ -352,8 +359,8 @@
         html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-xs-' + tWidth + '"') + '>';
         for (var i = 0; i < it["buttons"].length; i++) {
             var item = it["buttons"][i];
-            html += '<button type="button" ' + (item.id ? 'id="' + item.id + '"' : '' )
-                + (item.btnClass ? 'class="btn  ' + item.btnClass + '"' : 'class="btn  btn-default"' ) + '>' + item.text + '</button>';
+            html += '<button type="button" ' + (item.id ? 'id="' + item.id + '"' : '')
+                + (item.btnClass ? 'class="btn  ' + item.btnClass + '"' : 'class="btn  btn-default"') + '>' + item.text + '</button>';
         }
         html += '</div>';
         return html;
@@ -382,7 +389,7 @@
         }
         html += it.title + ':</label>';
         html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-xs-' + tWidth + '"') + '>' +
-            '<span  ' + (it.spanClass ? 'class="' + it.spanClass + ' form-text "' : 'class="form-text"' ) + (it.id ? ' id="' + it.id + '"' : '') + (it.name ? ' name="' + it.name + '"' : '') + '>' + it.defaultValue + '</span></div>';
+            '<span  ' + (it.spanClass ? 'class="' + it.spanClass + ' form-text "' : 'class="form-text"') + (it.id ? ' id="' + it.id + '"' : '') + (it.name ? ' name="' + it.name + '"' : '') + '>' + it.defaultValue + '</span></div>';
         return html;
     }
 
@@ -466,10 +473,10 @@
             }
             html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-xs-' + tWidth + '"') + '>';
             if (it.checked) {
-                html += '<select data-placeholder="选择..." class="chosen-select" '+ (it.id ? ' id="' + it.id + '"' : '')
-                    + (it.name ? ' name="' + it.name + '"' : '') +' >';
+                html += '<select data-placeholder="选择..." class="chosen-select" ' + (it.id ? ' id="' + it.id + '"' : '')
+                    + (it.name ? ' name="' + it.name + '"' : '') + ' >';
             } else {
-                html += '<select data-placeholder="选择..." disabled class="chosen-select" '+ (it.id ? ' id="' + it.id + '"' : '')
+                html += '<select data-placeholder="选择..." disabled class="chosen-select" ' + (it.id ? ' id="' + it.id + '"' : '')
                     + (it.name ? ' name="' + it.name + '"' : '') + ' >';
             }
             html += '<option value="" >请选择...</option>';
@@ -539,7 +546,7 @@
             }
             html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-xs-' + tWidth + '"') + '>';
             if (it.checked) {
-                html += '<input '+ (it.defaultValue ? ' value="' + it.defaultValue + '"' : 'value=""') + (it.id ? ' id="' + it.id + '"' : '')
+                html += '<input ' + (it.defaultValue ? ' value="' + it.defaultValue + '"' : 'value=""') + (it.id ? ' id="' + it.id + '"' : '')
                     + (it.name ? ' name="' + it.name + '"' : '') + ' class="form-control">';
             } else {
                 html += '<input  readonly' + (it.defaultValue ? ' value="' + it.defaultValue + '"' : 'value=""')
@@ -573,5 +580,90 @@
         html += '</div>';
         return html;
     }
+
+    function prepareConnection(it, lWidth, tWidth) {
+        var html = "";
+        html += '<label for="' + it.id + '" ' + (it.labelClass ? ' class="' + it.labelClass + ' control-label"' : 'class="col-md-' + lWidth + ' control-label"') + ' >';
+        if (it.required) {
+            html += '<span class="red">*</span>';
+        }
+        html += it.title + ':</label>';
+        html += '<div ' + (it.textClass ? ' class="' + it.textClass + '"' : 'class="col-md-' + tWidth + '"') + '>';
+        if (it.checked) {
+            html += '<input readonly="readonly"  class="form-control car" id="' + it.id + '"  name="' + it.name + '" obj="not_null"  type="text">';
+        } else {
+            html += '<div class="form-control car" id="' + it.id + '" name="' + it.name + '"></div>';
+        }
+        if (it.name == 'carBrandId') {
+            html += '<div class="car-box"><div class="item item-type"><h4>请选择品牌</h4><div class="type">';
+        } else {
+            html += '<div class="city-box"><div class="item item-type"><h4>--省份</h4>';
+        }
+
+        $.ajax({
+            url: it.url,
+            type: "post",
+            dataType: "json",
+            async: false,
+            success: function (result) {
+                if (result.error == 1) {
+                    if (it.name == 'carBrandId') {
+                        var letter, list, obj;
+                        var objArr = [];
+                        html += '<div class="type-left"><ul class="">';
+                        for (var i = 0; i < result.rows.length; i++) {
+                            letter = result.rows[i].letter;
+                            if (letter && letter.length == 1) {
+                                obj = result.rows[i];
+                                objArr.push(obj);
+                            }
+                        }
+                        objArr.sort(compare);
+                        for (var i = 0; i < objArr.length; i++) {
+                            html += '<li><a href="#' + objArr[i].letter + '">' + objArr[i].letter + '</a></li>';
+                        }
+                        html += '</ul></div><div class="type-right">';
+                        for (var j = 0; j < objArr.length; j++) {
+                            list = objArr[j].list;
+                            html += '<h5 id="' + objArr[j].letter + '">' + objArr[j].letter + '</h5>';
+                            for (var i = 0; i < list.length; i++) {
+                                html += '<p data-type="' + list[i].brandNameMainType + '">' + list[i].brandNameMain + '</p>';
+                            }
+                        }
+                        html += '</div></div>';
+                    } else {
+                        for (var i = 0; i < result.rows.length; i++) {
+                            html += '<p data-type="' + result.rows[i].id + '">' + result.rows[i].name + '</p>';
+                        }
+                    }
+                }
+            }
+        });
+        html += '</div><div class="item item-series">';
+        if (it.name == 'carBrandId') {
+            html += '<h4>请选择车系</h4>';
+        } else {
+            html += '<h4>--城市</h4>';
+        }
+
+        html += '<div class="series"></div></div>';
+        if (it.name == 'carBrandId') {
+            html += '<div class="item item-no"><h4>请选择车型</h4><div class="no"></div></div>';
+        }
+        html += '</div></div>';
+
+        return html;
+    }
+
+    function compare(obj1, obj2) {
+        var letter1 = obj1.letter;
+        var letter2 = obj2.letter;
+        if (letter1 < letter2) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
     component.form = Form;
 })($);
