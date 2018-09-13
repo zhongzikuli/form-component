@@ -1,3 +1,4 @@
 # formComponent
 
 通过自定义配置生成form表单组件，其中关联了 cityselect城市级联组件，laydate时间选择组件，select下拉插件
+城市组件根据配置，支持省市2级联动和省市区3级联动，支持城市弹出框对齐位置
